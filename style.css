@@ -44,7 +44,7 @@ section {
     background-color: white;
 }
 
-.container-buttons {
+#container-buttons {
     display: flex;
     justify-content: space-between;
     flex-direction: row;

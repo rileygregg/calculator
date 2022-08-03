@@ -1,3 +1,10 @@
+// Dom elements
+const buttons = document.querySelectorAll("#btn");
+const equation = document.querySelector(".container-display");
+const displayResult = document.querySelector(".container-result");
+const inputs = {};
+
+// create functions to calculate arguments
 function add(x, y) {
     let answer = x + y;
     return answer;
@@ -33,7 +40,19 @@ function operate(operator, x, y) {
         console.log("choose an operator");
     }
 
-    return answer;
+    return (displayResult.textContent = answer);
 }
 
-console.log(operate("+", 10, 6));
+// select buttons and log value
+
+for (const button of buttons) {
+    button.addEventListener("click", () => {
+        inputs.inputOne = button.value;
+        equation.textContent = inputs.inputOne;
+    });
+
+    // button.addEventListener("click", () => {
+    //     inputs.operator = button.value;
+    //     equation.textContent = `${inputs.inputOne} ${operator}`;
+    // });
+}
