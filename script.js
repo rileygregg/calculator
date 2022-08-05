@@ -63,6 +63,35 @@ function operate(operator, x, y) {
     return (displayResult.textContent = answer);
 }
 
+function deleteKey() {
+    // if y isnt empty, remove one from y, else remove one from x
+    if (inputs[2] !== "") {
+        let newY = inputs[2].toString();
+        console.log(typeof newY);
+        // turns string into a split up array
+        let newerY = newY.split("");
+
+        console.log(newerY);
+        newerY.pop();
+        let newestY = newerY.join("");
+        console.log(newestY);
+        y = newestY;
+    } else if (inputs[2] == "" && inputs[0] !== "") {
+        let newX = inputs[0].toString();
+        console.log(typeof newX);
+        // turns string into a split up array
+        let newerX = newX.split("");
+
+        console.log(newerX);
+        newerX.pop();
+        let newestX = newerX.join("");
+        console.log(newestX);
+        x = newestX;
+    } else {
+        return;
+    }
+}
+
 for (const button of buttons) {
     let result = "";
     button.addEventListener("click", () => {
@@ -138,19 +167,20 @@ for (const button of buttons) {
             equation.textContent = "";
             console.log(inputs);
         } else if (button.value == "DEL") {
-            console.log(x);
-            // turns into array
-            x = x.split("");
-            console.log(x);
-            // removes last item in array
-            x.pop();
-            console.log(x);
-            // create new variable with new array without last item
-            newX = x.join("");
-            // convert new variable to old variable as string
-            x = newX;
-            console.log(x);
-            equation.textContent = x;
+            // console.log(x);
+            // // turns into array
+            // x.split("");
+            // console.log(x);
+            // // removes last item in array
+            // x.pop();
+            // console.log(x);
+            // // create new variable with new array without last item
+            // newX = x.join("");
+            // // convert new variable to old variable as string
+            // x = newX;
+            // console.log(x);
+            deleteKey();
+            // equation.textContent = x;
         } else {
             result = operate(operator, x, y);
             displayResult.textContent = result;
@@ -171,5 +201,3 @@ for (const button of buttons) {
         }
     });
 }
-
-// if
