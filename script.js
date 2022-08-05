@@ -63,103 +63,113 @@ function operate(operator, x, y) {
     return (displayResult.textContent = answer);
 }
 
-function calculate() {
-    for (const button of buttons) {
-        button.addEventListener("click", () => {
-            if (
-                // if you select a number and there hasnt been an operator selected yet, this will run
-                (button.value == "1" ||
-                    button.value == "2" ||
-                    button.value == "3" ||
-                    button.value == "4" ||
-                    button.value == "5" ||
-                    button.value == "6" ||
-                    button.value == "7" ||
-                    button.value == "8" ||
-                    button.value == "9" ||
-                    button.value == "0") &&
-                operator == ""
-            ) {
-                x += button.value;
-                // turn string into integer
-                let newX = parseInt(x);
-                x = newX;
+for (const button of buttons) {
+    let result = "";
+    button.addEventListener("click", () => {
+        if (
+            // if you select a number and there hasnt been an operator selected yet, this will run
+            (button.value == "1" ||
+                button.value == "2" ||
+                button.value == "3" ||
+                button.value == "4" ||
+                button.value == "5" ||
+                button.value == "6" ||
+                button.value == "7" ||
+                button.value == "8" ||
+                button.value == "9" ||
+                button.value == "0") &&
+            operator == ""
+        ) {
+            x += button.value;
+            // turn string into integer
+            let newX = parseInt(x);
+            x = newX;
 
-                inputs[0] = x;
+            inputs[0] = x;
 
-                equation.textContent = x + operator + y;
-                console.log(inputs);
-                return;
-            } else if (
-                (button.value == "+" ||
-                    button.value == "-" ||
-                    button.value == "*" ||
-                    button.value == "/" ||
-                    button.value == "**" ||
-                    button.value == "%") &&
-                operator == ""
-            ) {
-                operator += button.value;
-                inputs[1] = operator;
-                equation.textContent = x + operator + y;
-                console.log(operator);
-                return;
-            } else if (
-                // if you select a number and there has been an operator selected, this will run
-                (button.value == "1" ||
-                    button.value == "2" ||
-                    button.value == "3" ||
-                    button.value == "4" ||
-                    button.value == "5" ||
-                    button.value == "6" ||
-                    button.value == "7" ||
-                    button.value == "8" ||
-                    button.value == "9" ||
-                    button.value == "0") &&
-                operator !== ""
-            ) {
-                y += button.value;
-                let newY = parseInt(y);
-                y = newY;
-
-                inputs[2] = y;
-                equation.textContent = x + operator + y;
-                console.log(inputs);
-                return;
-            } else if (button.value == "CA") {
-                x = "";
-                y = "";
-                operator = "";
-
-                inputs = [];
-
-                displayResult.textContent = "";
-                equation.textContent = "";
-                console.log(inputs);
-            } else if (button.value == "DEL") {
-                console.log(x);
-                // turns into array
-                x = x.split("");
-                console.log(x);
-                // removes last item in array
-                x.pop();
-                console.log(x);
-                // create new variable with new array without last item
-                newX = x.join("");
-                // convert new variable to old variable as string
-                x = newX;
-                console.log(x);
-                equation.textContent = x;
-            } else {
-                let result = operate(operator, x, y);
-                displayResult.textContent = result;
-                inputs[3] = result;
-            }
-            console.log(inputs);
             equation.textContent = x + operator + y;
+            console.log(inputs);
             return;
-        });
-    }
+        } else if (
+            // set operator
+            (button.value == "+" ||
+                button.value == "-" ||
+                button.value == "*" ||
+                button.value == "/" ||
+                button.value == "**" ||
+                button.value == "%") &&
+            operator == ""
+        ) {
+            operator += button.value;
+            inputs[1] = operator;
+            equation.textContent = x + operator + y;
+            console.log(operator);
+            return;
+        } else if (
+            // if you select a number and there has been an operator selected, this will run
+            (button.value == "1" ||
+                button.value == "2" ||
+                button.value == "3" ||
+                button.value == "4" ||
+                button.value == "5" ||
+                button.value == "6" ||
+                button.value == "7" ||
+                button.value == "8" ||
+                button.value == "9" ||
+                button.value == "0") &&
+            operator !== ""
+        ) {
+            y += button.value;
+            let newY = parseInt(y);
+            y = newY;
+
+            inputs[2] = y;
+            equation.textContent = x + operator + y;
+            console.log(inputs);
+            return;
+        } else if (button.value == "CA") {
+            x = "";
+            y = "";
+            operator = "";
+
+            inputs = [];
+
+            displayResult.textContent = "";
+            equation.textContent = "";
+            console.log(inputs);
+        } else if (button.value == "DEL") {
+            console.log(x);
+            // turns into array
+            x = x.split("");
+            console.log(x);
+            // removes last item in array
+            x.pop();
+            console.log(x);
+            // create new variable with new array without last item
+            newX = x.join("");
+            // convert new variable to old variable as string
+            x = newX;
+            console.log(x);
+            equation.textContent = x;
+        } else {
+            result = operate(operator, x, y);
+            displayResult.textContent = result;
+            equation.textContent = "";
+
+            inputs[3] = result;
+        }
+        console.log(inputs);
+        equation.textContent = x + operator + y;
+
+        if (result !== "") {
+            x = result;
+            inputs = [];
+            inputs[0] = x;
+            y = "";
+            operator = "";
+            equation.textContent = x;
+        }
+    });
 }
 
-calculate();
+// if
