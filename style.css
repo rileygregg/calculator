@@ -31,7 +31,7 @@ section {
 /* inside the calculator */
 .container-top {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     flex-direction: column;
     align-items: flex-end;
     margin: 20px;
@@ -40,7 +40,7 @@ section {
     height: 120px;
     border: solid 2px black;
     border-radius: 20px;
-    font-size: 40px;
+    font-size: 50px;
     background-color: white;
 }
 

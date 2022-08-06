@@ -195,7 +195,7 @@ for (const button of buttons) {
             inputs[0] = x;
             y = "";
             operator = "";
-            equation.textContent = x;
+            equation.textContent = "";
         }
     });
 }
