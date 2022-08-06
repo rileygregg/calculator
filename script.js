@@ -64,35 +64,42 @@ function operate(operator, x, y) {
 }
 
 function deleteKey() {
-    let newInputs = inputs.toString();
-    let newerInputs = newInputs.split("");
-    // console.log(newerInputs);
-    newerInputs.pop();
-    console.log(newerInputs);
-    let newestInputs = newerInputs.join("");
-    console.log(newestInputs);
-    inputs = newestInputs;
-    x = inputs[0];
-    operator = inputs[1];
-    y = inputs[2];
+    if (y !== "") {
+        let newY = y.toString();
+        console.log(newY);
+        let newerY = newY.split("");
+        console.log(newerY);
 
-    // if y isnt empty, remove one from y, else remove one from x
-    // if (inputs[2] !== "") {
-    //     y = y.toString();
-    //     newY = y.split("");
-    //     newY.pop();
-    //     y = newY.join("");
-    // } else if (inputs[1] !== "") {
-    //     newOperator = inputs.pop();
-    //     operator = newOperator;
-    // } else if (inputs[0] !== "") {
-    //     x = x.toString();
-    //     newX = x.split("");
-    //     newX.pop();
-    //     x = newX.join("");
-    // } else {
-    //     return;
-    // }
+        newerY.pop();
+
+        y = newerY.join("");
+        console.log(y);
+    } else if (operator !== "" && y == "") {
+        let newOperator = "";
+        operator = newOperator;
+    } else {
+        let newX = x.toString();
+        console.log(newX);
+        let newerX = newX.split("");
+        console.log(newerX);
+
+        newerX.pop();
+
+        x = Number(newerX.join(""));
+        console.log(x);
+    }
+
+    // create string
+    // let newInputs = inputs.join("");
+    // console.log(newInputs);
+    // // split string into new array with all single digits
+    // let newerInputs = newInputs.split("");
+    // console.log(newerInputs);
+
+    // newerInputs.pop();
+
+    // inputs = Number(newerInputs.join(""));
+    // console.log(inputs);
 }
 
 for (const button of buttons) {
@@ -135,7 +142,7 @@ for (const button of buttons) {
             operator += button.value;
             inputs[1] = operator;
             equation.textContent = x + operator + y;
-            console.log(operator);
+            // console.log(operator);
             return;
         } else if (
             // if you select a number and there has been an operator selected, this will run
@@ -171,7 +178,7 @@ for (const button of buttons) {
             console.log(inputs);
         } else if (button.value == "DEL") {
             deleteKey();
-            equation.textContent = x + operator + y;
+            equation.textContent = inputs;
         } else {
             result = operate(operator, x, y);
             displayResult.textContent = result;
@@ -179,7 +186,7 @@ for (const button of buttons) {
 
             inputs[3] = result;
         }
-        console.log(inputs);
+        // console.log(inputs);
         equation.textContent = x + operator + y;
 
         if (result !== "") {
