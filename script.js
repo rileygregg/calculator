@@ -64,32 +64,35 @@ function operate(operator, x, y) {
 }
 
 function deleteKey() {
+    let newInputs = inputs.toString();
+    let newerInputs = newInputs.split("");
+    // console.log(newerInputs);
+    newerInputs.pop();
+    console.log(newerInputs);
+    let newestInputs = newerInputs.join("");
+    console.log(newestInputs);
+    inputs = newestInputs;
+    x = inputs[0];
+    operator = inputs[1];
+    y = inputs[2];
+
     // if y isnt empty, remove one from y, else remove one from x
-    if (inputs[2] !== "") {
-        let newY = inputs[2].toString();
-        console.log(typeof newY);
-        // turns string into a split up array
-        let newerY = newY.split("");
-
-        console.log(newerY);
-        newerY.pop();
-        let newestY = newerY.join("");
-        console.log(newestY);
-        y = newestY;
-    } else if (inputs[2] == "" && inputs[0] !== "") {
-        let newX = inputs[0].toString();
-        console.log(typeof newX);
-        // turns string into a split up array
-        let newerX = newX.split("");
-
-        console.log(newerX);
-        newerX.pop();
-        let newestX = newerX.join("");
-        console.log(newestX);
-        x = newestX;
-    } else {
-        return;
-    }
+    // if (inputs[2] !== "") {
+    //     y = y.toString();
+    //     newY = y.split("");
+    //     newY.pop();
+    //     y = newY.join("");
+    // } else if (inputs[1] !== "") {
+    //     newOperator = inputs.pop();
+    //     operator = newOperator;
+    // } else if (inputs[0] !== "") {
+    //     x = x.toString();
+    //     newX = x.split("");
+    //     newX.pop();
+    //     x = newX.join("");
+    // } else {
+    //     return;
+    // }
 }
 
 for (const button of buttons) {
@@ -167,20 +170,8 @@ for (const button of buttons) {
             equation.textContent = "";
             console.log(inputs);
         } else if (button.value == "DEL") {
-            // console.log(x);
-            // // turns into array
-            // x.split("");
-            // console.log(x);
-            // // removes last item in array
-            // x.pop();
-            // console.log(x);
-            // // create new variable with new array without last item
-            // newX = x.join("");
-            // // convert new variable to old variable as string
-            // x = newX;
-            // console.log(x);
             deleteKey();
-            // equation.textContent = x;
+            equation.textContent = x + operator + y;
         } else {
             result = operate(operator, x, y);
             displayResult.textContent = result;
